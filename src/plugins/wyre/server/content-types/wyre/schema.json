@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "wyre",
+  "info": {
+    "singularName": "wyre",
+    "pluralName": "wyres",
+    "displayName": "wyreData"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": true },
+    "content-type-builder": { "visible": true }
+  },
+
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "maxLength": "100",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "birthday": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "street1": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "street2": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "city": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "state": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": "10",
+      "required": false
+    },
+    "country": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "blockchains": {
+      "type": "string",
+      "maxLength": "100",
+      "default": "ALL",
+      "required": false
+    }
+  }
+}

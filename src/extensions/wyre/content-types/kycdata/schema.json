@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kycinformation",
+  "info": {
+    "singularName": "kycdata",
+    "pluralName": "kycinformation",
+    "displayName": "kycdata"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "maxLength": "100",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "birthday": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "street1": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "street2": {
+      "type": "string",
+      "maxLength": "100",
+      "required": false
+    },
+    "city": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": "10",
+      "required": true
+    },
+    "country": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "blockchains": {
+      "type": "string",
+      "maxLength": "100",
+      "default": "ALL",
+      "required": true
+    }
+  }
+}
