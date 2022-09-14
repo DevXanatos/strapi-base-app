@@ -13,40 +13,41 @@ import { Flex, Button, TextInput, Box } from "@strapi/design-system";
 
 const HomePage = () => {
   const [returnHome, setReturnHome] = useState(false);
-  const [wyreId, setWyreId] = useState([]);
-  const [firstName, setFirstName] = useState([]);
-  const [lastName, setLastName] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [birthday, setBirthday] = useState([]);
-  const [street1, setStreet1] = useState([]);
-  const [street2, setStreet2] = useState([]);
-  const [city, setCity] = useState([]);
-  const [state, setState] = useState([]);
-  const [postalCode, setPostalCode] = useState([]);
-  const [country, setCountry] = useState([]);
+  const [wyreId, setWyreId] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [street1, setStreet1] = useState("");
+  const [street2, setStreet2] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [country, setCountry] = useState("");
   const [isNewRecord, setIsNewRecord] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       if (isLoading === false) setIsLoading(true);
-
       const allData = await kycdataRequests.find();
-      //alert(`ID: ${allData.id}`);
-      if (allData.id) setWyreId(allData.id);
-      if (allData.firstName) setFirstName(allData.firstName);
-      if (allData.lastName) setLastName(allData.lastName);
-      if (allData.email) setEmail(allData.email);
-      if (allData.phone) setPhone(allData.phone);
-      if (allData.birthday) setBirthday(allData.birthday);
-      if (allData.street1) setStreet1(allData.street1);
-      if (allData.street2) setStreet2(allData.street2);
-      if (allData.city) setCity(allData.city);
-      if (allData.state) setState(allData.state);
-      if (allData.postalCode) setPostalCode(allData.postalCode);
-      if (allData.country) setCountry(allData.country);
-      setIsNewRecord(false);
+
+      if (allData) {
+        if (allData.id) setWyreId(allData.id);
+        if (allData.firstName) setFirstName(allData.firstName);
+        if (allData.lastName) setLastName(allData.lastName);
+        if (allData.email) setEmail(allData.email);
+        if (allData.phone) setPhone(allData.phone);
+        if (allData.birthday) setBirthday(allData.birthday);
+        if (allData.street1) setStreet1(allData.street1);
+        if (allData.street2) setStreet2(allData.street2);
+        if (allData.city) setCity(allData.city);
+        if (allData.state) setState(allData.state);
+        if (allData.postalCode) setPostalCode(allData.postalCode);
+        if (allData.country) setCountry(allData.country);
+        setIsNewRecord(false);
+      }
     } catch (e) {
       console.log("error", e);
     }
@@ -58,17 +59,28 @@ const HomePage = () => {
   }, []);
 
   async function deleteKycData(id) {
-    //alert(`Delete ID: ${id}`);
+    alert(`Delete ID: ${id}`);
     if (!isNewRecord) {
       await kycdataRequests.deleteKycData(id);
-      await fetchData();
+      setWyreId("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setBirthday("");
+      setStreet1("");
+      setStreet2("");
+      setCity("");
+      setState("");
+      setPostalCode("");
+      setCountry("");
       setIsNewRecord(true);
     }
   }
 
   async function updateData(id, data) {
     // create or update
-    //alert(`Update/Add ID: ${id} and Data: ${data}`);
+    alert(`Update/Add ID: ${id} and Data: ${data}`);
     if (isNewRecord) {
       // alert(
       //   `IsNewRecord: ${isNewRecord} data.id: ${data.id} Name1: ${firstName} Name2: ${lastName} Email: ${email}`
@@ -121,7 +133,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your phone"
+              placeholder="enter your phone number"
               label="Phone"
               name="phone"
               error={phone.length > 20 ? "phone number is too long" : undefined}
@@ -141,7 +153,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your address"
+              placeholder="enter your street"
               label="Street1"
               name="street1"
               error={street1.length > 100 ? "Content is too long" : undefined}
@@ -151,7 +163,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your address"
+              placeholder="enter your additional information"
               label="Street2"
               name="street2"
               error={street2.length > 100 ? "Content is too long" : undefined}
@@ -171,7 +183,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your address"
+              placeholder="enter your state"
               label="State"
               name="state"
               error={state.length > 100 ? "Content is too long" : undefined}
@@ -181,7 +193,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your address"
+              placeholder="enter your postal code"
               label="Postal Code"
               name="postalCode"
               error={postalCode.length > 10 ? "Content is too long" : undefined}
@@ -191,7 +203,7 @@ const HomePage = () => {
           </Box>
           <Box padding={5}>
             <TextInput
-              placeholder="enter your address"
+              placeholder="enter your country"
               label="Country"
               name="country"
               error={country.length > 100 ? "Content is too long" : undefined}

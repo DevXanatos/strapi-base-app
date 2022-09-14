@@ -2,7 +2,13 @@
 
 module.exports = ({ strapi }) => ({
   async find(query) {
-    return await strapi.entityService.findOne("plugin::wyre.wyre", query);
+    //error: Undefined binding(s) detected when compiling WHERE. Undefined column(s): [t0.id] query: where `t0`.`id` = ?
+    //return await strapi.entityService.findOne("plugin::wyre.wyre", query.id);
+    const result = await strapi.entityService.findOne(
+      "plugin::wyre.wyre",
+      query
+    );
+    return result;
   },
 
   async delete(id) {
@@ -14,6 +20,20 @@ module.exports = ({ strapi }) => ({
   },
 
   async update(id, data) {
-    return await strapi.entityService.update("plugin::wyre.wyre", id, data);
+    //const mylog = `ID: ${id} and data: ${data}`;
+    // strapi.log.info(
+    //   "---------------------------- UPDATE: data ----------------------------"
+    // );
+    // strapi.log.info(JSON.stringify(data));
+    const result = await strapi.entityService.update(
+      "plugin::wyre.wyre",
+      id,
+      data
+    );
+    // strapi.log.info(JSON.stringify(result));
+    // strapi.log.info(
+    //   "---------------------------- UPDATE: data ----------------------------"
+    // );
+    return result;
   },
 });
