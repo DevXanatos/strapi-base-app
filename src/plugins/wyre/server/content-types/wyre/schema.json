@@ -14,7 +14,6 @@
     "content-manager": { "visible": true },
     "content-type-builder": { "visible": true }
   },
-
   "attributes": {
     "firstName": {
       "type": "string",
@@ -76,6 +75,16 @@
       "maxLength": "100",
       "default": "ALL",
       "required": false
+    },
+    "wyreUUID": {
+      "type": "string",
+      "required": false
+    },
+    "paymentMethods": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::wyre.paymethod",
+      "mappedBy": "owner"
     }
   }
 }

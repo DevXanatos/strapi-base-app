@@ -1,4 +1,5 @@
 "use strict";
 const wyre = require("./wyre");
+const paymethod = require("./payment-method");
 
-module.exports = { wyre };
+module.exports = { wyre, paymethod };

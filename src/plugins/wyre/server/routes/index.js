@@ -7,6 +7,44 @@ module.exports = [
       policies: [],
     },
   },
+
+  {
+    method: "GET",
+    path: "/getCards",
+    handler: "paymentMethods.getCards",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: "POST",
+    path: "/addCard",
+    handler: "paymentMethods.addCard",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: "DELETE",
+    path: "/deleteCard/:id",
+    handler: "paymentMethods.deleteCard",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
+  {
+    method: "PUT",
+    path: "/updateCard/:id",
+    handler: "paymentMethods.updateCard",
+    config: {
+      policies: [],
+      auth: false,
+    },
+  },
+
   {
     method: "GET",
     path: "/find",
@@ -16,7 +54,6 @@ module.exports = [
       auth: false,
     },
   },
-
   {
     method: "POST",
     path: "/create",

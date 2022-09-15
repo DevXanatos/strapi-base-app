@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_methods",
+  "info": {
+    "singularName": "paymethod",
+    "pluralName": "paymethods",
+    "displayName": "payment method"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": true },
+    "content-type-builder": { "visible": true }
+  },
+  "attributes": {
+    "cardnumber": {
+      "type": "integer",
+      "maxLength": "19",
+      "private": true,
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["MASTERCARD", "VISA"]
+    },
+    "cvc": {
+      "type": "integer",
+      "maxLength": "3",
+      "private": true,
+      "required": true
+    },
+    "expirationDate": {
+      "type": "date",
+      "private": true,
+      "required": true
+    },
+    "street": {
+      "type": "string",
+      "maxLength": "100",
+      "private": true,
+      "required": true
+    },
+    "postalCode": {
+      "type": "string",
+      "maxLength": "10",
+      "private": true,
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "maxLength": "100",
+      "private": true,
+      "required": true
+    },
+    "nickname": {
+      "type": "string",
+      "maxLength": "100",
+      "required": true
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::wyre.wyre",
+      "inversedBy": "paymentMethods"
+    }
+  }
+}

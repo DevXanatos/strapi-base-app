@@ -10,6 +10,9 @@ import kycdataRequests from "../../api/wyre";
 // import PropTypes from 'prop-types';
 import { BaseHeaderLayout, ContentLayout } from "@strapi/design-system/Layout";
 import { Flex, Button, TextInput, Box } from "@strapi/design-system";
+import { CryptoJS } from "crypto-js";
+// TODO: create wyre-API-calls in admin/src/api/xyz.js & import here
+//console.log("env : ", process.env);
 
 const HomePage = () => {
   const [returnHome, setReturnHome] = useState(false);
@@ -59,7 +62,7 @@ const HomePage = () => {
   }, []);
 
   async function deleteKycData(id) {
-    alert(`Delete ID: ${id}`);
+    //alert(`Delete ID: ${id}`);
     if (!isNewRecord) {
       await kycdataRequests.deleteKycData(id);
       setWyreId("");
@@ -80,11 +83,8 @@ const HomePage = () => {
 
   async function updateData(id, data) {
     // create or update
-    alert(`Update/Add ID: ${id} and Data: ${data}`);
+    //alert(`Update/Add ID: ${id} and Data: ${data}`);
     if (isNewRecord) {
-      // alert(
-      //   `IsNewRecord: ${isNewRecord} data.id: ${data.id} Name1: ${firstName} Name2: ${lastName} Email: ${email}`
-      // );
       await kycdataRequests.addKycData(data);
       await fetchData();
     } else {
@@ -216,6 +216,26 @@ const HomePage = () => {
             <Flex justifyContent="space-evenly">
               <Button onClick={() => setReturnHome(true)} variant="tertiary">
                 Cancel
+              </Button>
+              <Button
+                onClick={() =>
+                  createWyreUser({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phone: phone,
+                    birthday: birthday,
+                    street1: street1,
+                    street2: street2,
+                    city: city,
+                    state: state,
+                    postalCode: postalCode,
+                    country: country,
+                  })
+                }
+                variant="tertiary"
+              >
+                Create Wyre User
               </Button>
               <Button onClick={() => deleteKycData(wyreId)} variant="danger">
                 Delete
